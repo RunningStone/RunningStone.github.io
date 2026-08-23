@@ -1,0 +1,83 @@
+identity:
+  name: Shi Pan
+  name_native: null
+  title: Founding Researcher, PAVO AI
+  email: psdpluto@gmail.com
+affiliations:
+  current:
+  - institution: PAVO AI
+    department: Canary Wharf, London, UK
+    role: Founding Researcher
+    start: '2026'
+    end: null
+  - institution: University College London
+    department: Secrier Lab, UCL Genetics Institute
+    role: Research Fellow (non-stipendiary from 2026)
+    start: '2021'
+    end: null
+  past:
+  - institution: ChengShi Tech Ltd.
+    department: Xi'an, China
+    role: Co-founder & Lead AI Scientist
+    start: '2023'
+    end: '2025'
+  - institution: (name withheld)
+    department: China (part-time)
+    role: Co-founder / principal engineer — early LLM product ventures
+    start: '2021'
+    end: '2023'
+  - institution: Deep Render Ltd. & Imperial College London
+    department: Innovate UK, London, UK
+    role: Research Scientist / Research Associate
+    start: '2020'
+    end: '2021'
+education:
+- degree: Ph.D. Electrical Engineering
+  institution: University of Kent
+  department: Canterbury, UK
+  advisor:
+  - Prof. Farzin Deravi
+  start: '2015'
+  end: '2019'
+- degree: M.Sc. Advanced Computer Science
+  institution: University of Manchester
+  department: Manchester, UK
+  advisor:
+  - Ke Chen
+  start: '2013'
+  end: '2014'
+- degree: B.Sc. Computer Science
+  institution: Zhengzhou University
+  department: Zhengzhou, China
+  start: '2009'
+  end: '2013'
+research:
+  summary: Building long-horizon, self-improving agents that can take over repetitive
+    work currently performed by humans — and the evaluation-to-training loop needed
+    to make them trustworthy.
+  interests:
+  - Agent evaluation and long-horizon post-training
+  - Reliability and verifiable behaviour in multi-agent systems
+  - Lifelong learning under the forgetting–plasticity trade-off
+  - Multimodal foundation models (vision, language, transcriptomics, time-series)
+  - Virtual-cell and single-cell generative modelling
+links:
+  github: https://github.com/RunningStone
+  email: psdpluto@gmail.com
+selected_publications:
+- pan2026masbound
+- pan2026sysgt
+- pan2025peka
+- pan2024emtlm
+- pan2023histomil
+- pan2021quantisation
+professional_services:
+  reviewer:
+  - ICML 2026
+  - NeurIPS 2026
+  - AAAI 2026
+awards:
+- name: ICML 2026 Golden Reviewer
+  year: '2026'
+  note: top-reviewer award, complimentary registration
+schema_version: 1

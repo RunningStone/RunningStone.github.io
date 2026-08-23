@@ -1,0 +1,7 @@
+# extraction cache — contains the raw CV text, including the phone number.
+# Never commit: this repo is intended to become public.
+.aris-homepage/
+
+__pycache__/
+*.pyc
+.DS_Store

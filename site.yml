@@ -1,0 +1,283 @@
+site:
+  name: "Shi Pan"
+  role: "Founding Researcher, PAVO AI · Research Fellow, Secrier Lab, UCL"
+  email: "psdpluto@gmail.com"
+  location: "London, UK"
+  github: "https://github.com/RunningStone"
+  scholar: "https://scholar.google.com/citations?user=hx6VL0UAAAAJ"
+  linkedin: "https://www.linkedin.com/in/shi-pan-a2879a92"
+  nav:
+    - {id: index,      label: "Research",   file: "index.html"}
+    - {id: agent,      label: "Agents & Post-Training", file: "agent.html"}
+    - {id: multimodal, label: "Multimodal & Virtual Cell", file: "multimodal.html"}
+    - {id: systems,    label: "Systems & Earlier Work", file: "systems.html"}
+
+index:
+  title: "Research"
+  lede: |
+    My long-term research interest is in **long-horizon, self-improving agents** that can take over
+    repetitive work currently performed by humans.
+
+    To get there I build the complete **evaluation-to-training loop** — controlled environments,
+    reproducible rollouts, evaluators that turn observed behaviour into training signals, and
+    reward-driven post-training. Alongside this systems work I study two foundations of reliable
+    long-horizon agency: how *task structure* limits multi-agent success, and how lifelong learning
+    can be formalised around the **forgetting–plasticity trade-off under survival pressure**.
+
+    The same instinct runs through everything earlier: understand the first principles of the
+    architecture, engage deeply with the data, and carry the result all the way to something that
+    measurably works — breaking patent barriers in learned image compression, replacing £7,000+
+    spatial transcriptomics assays with routine histology, deploying industrial IoT serving
+    200,000+ users. I care less about novelty in isolation than about the distance a result
+    travels before it stops being a demo.
+  threads:
+    - page: agent
+      title: "Agents & Post-Training"
+      blurb: "A theory of when multi-agent systems provably break down, and the evaluation and post-training infrastructure built to test it in practice."
+    - page: multimodal
+      title: "Multimodal & Virtual Cell"
+      blurb: "Vision–language models that infer spatial gene expression from H&E; ODE / flow-matching single-cell foundation models for cellular dynamics and trajectory design."
+    - page: systems
+      title: "Systems & Earlier Work"
+      blurb: "Production time-series foundation models at 200K-user scale, early LLM product ventures, learned image compression, and explainable biometric attack detection."
+  selected_note: "Selected from 12 publications; the full list per area is on each topic page."
+  selected:
+    - pan2026masbound
+    - pan2026sysgt
+    - pan2025peka
+    - pan2024emtlm
+    - pan2023histomil
+    - pan2021quantisation
+
+pages:
+  agent:
+    title: "Agents & Post-Training"
+    lede: |
+      I work both ends of the same problem. **Theory** tells me where long-horizon agency must
+      break down — the limits that hold regardless of how well the system is engineered.
+      **Practice** is the infrastructure that measures whether it actually does, and the
+      post-training that pushes the boundary back.
+
+      The order matters to me: I prefer to characterise a failure mode before engineering around
+      it. But neither half is worth much alone — a bound nobody can measure is a curiosity, and a
+      benchmark with no theory of what it is bounding is a leaderboard.
+    sections:
+      - part: "Theory"
+        part_note: "The limits that hold regardless of engineering."
+        title: "Information-theoretic limits of multi-agent success"
+        body: |
+          An upper-bound theory of agent failure derived from **task structure** rather than from
+          model capability: given how a task decomposes, there is a ceiling on what any
+          multi-agent arrangement can achieve. Validated on SWE-bench, and carried through to the
+          reliability mechanisms that follow from it — the bound is not the end of the argument,
+          it is what tells the engineering where to push.
+        pubs: [pan2026masbound]
+      - part: "Theory"
+        title: "Lifelong learning under survival pressure"
+        body: |
+          A full formalisation of lifelong learning whose point of departure from widely accepted
+          frameworks is a **constrained-learning view**: the forgetting–plasticity trade-off does
+          not operate in the abstract, it operates under survival pressure. To be submitted as an
+          arXiv paper alongside a PAVO strategy document, with an accompanying benchmark
+          (see *Long-horizon autonomy* below).
+      - part: "Theory"
+        title: "Loss of plasticity via manifold-preserving optimisation"
+        body: |
+          Studied the relationship between the plasticity of MLP/CNN networks and their weight
+          distributions. A manifold-preserving optimisation scheme achieved stronger
+          anti-loss-of-plasticity behaviour. (In preparation.)
+      - part: "Practice"
+        part_note: "Environment → rollout → evaluator → reward → post-training, and back."
+        title: "Evaluation: turning behaviour into signal"
+        body: |
+          A post-training loop is only as good as the evaluator feeding it. Three complementary
+          pieces: a deterministic-plus-judge harness for *single-agent tool behaviour*, a
+          reproducibility layer that makes cross-agent comparison meaningful, and an automated
+          generator for *domain evaluation sets* where hand-writing tests is prohibitive.
+        items:
+          - name: "eval-box — deterministic checks + LLM judges"
+            detail: "Four deterministic checks (tool name, AST diff, argument consistency, output format) combined with LLM judges over a shared trajectory schema. Standalone, so it can grade any agent that emits the schema."
+          - name: "Controlled rollout protocol"
+            detail: "Produces comparable canonical JSONL trajectories across CLI agents under pinned sandboxes and explicit taint rules — the reproducibility layer without which cross-agent numbers mean nothing."
+          - name: "AutoGT — automated evaluation-set generation"
+            detail: "A domain-prior-guided agentic pipeline that extracts knowledge from a real enterprise software system and converts it into QA evaluation sets. Reaches Spearman > 0.7 against expert hand-written tests on system scoring while covering most expert-defined categories. Delivered into PAVO's Eval Factory as a core pipeline; methods paper under review."
+            pub: pan2026sysgt
+          - name: "27-operator evaluation spectrum"
+            detail: "An evaluation spectrum grounded in human working-memory and metacognition theory, applied as a systematic assessment across the three major closed-source model families."
+      - part: "Practice"
+        title: "Post-training for verifiable behaviour"
+        body: |
+          Enterprise agent deployment is gated on *guaranteed, stable service*, not on average-case
+          capability. I proposed **programmatic process rewards** as a self-initiated direction at
+          PAVO: a neuro-symbolic framework that converts observed trajectory structure into a
+          programmatic reward signal, which then drives a DPO/GRPO pipeline.
+        items:
+          - name: "Programmatic process rewards → DPO/GRPO"
+            detail: "Fine-tuned Qwen2.5-0.5B beats base Qwen2.5-0.5B by ~10% on an internal tool-behaviour evaluation set — primarily detection of illegal operations introduced via random sampling or context injection during tool calls."
+          - name: "Batched evaluation environments from seeds"
+            detail: "To make that evaluation possible, built an agent that uses an environment graph to construct tool lists plus differentiated Docker images with varying dependency libraries — yielding many test environments from a small set of seeds and an LLM."
+      - part: "Practice"
+        title: "Long-horizon autonomy under pressure"
+        body: |
+          Short-horizon benchmarks hide the failure modes that matter. Both environments below are
+          designed so that *degradation over time* is the measured quantity — they are where the
+          theory above becomes an observable curve.
+        items:
+          - name: "Mini-Uber — stress-testing multi-agent operations"
+            detail: "An immutable Manhattan-scale ride-hailing simulation (demand, user distribution, congestion, rainstorms). A two-layer multi-agent system with distinct coder and manager roles maintains a ride-matching codebase under escalating external pressure; the metric is how long it survives. Without competitors, Sonnet-driven agents averaged 94 iteration steps; adding external competition and regulatory signals collapsed this to ~50. Code quality declined after ~10 steps, manager agents drifted into blind forecasting and hallucination, and the codebase eventually collapsed."
+          - name: "Lifelong-learning benchmark for long-lived repositories"
+            detail: "A systematic review found that as of early 2026 no long-horizon coding-agent benchmark measures an agent's ability to independently develop and operate a long-lived repository. Constructed four mutually independent software projects with minimal human-written code, mined candidate features from open-source repositories into an expert-reviewed command pool, and required agents to maintain the repositories against extracted issues. Most architectures could not sustain beyond 20 issues before repository quality scores collapsed."
+      - part: "Practice"
+        title: "Shipped to production"
+        body: |
+          None of this is an academic exercise — one component landed in a production codebase
+          within my first month at PAVO.
+        items:
+          - name: "Dynamic context compression (20% → 47%)"
+            detail: "Read into the production codebase and found that context compression was rule-based — selecting partial turn content with no semantic-level compression of the current turn. Built a two-model pipeline (LLMLingua-2 + Qwen2.5-0.5B) doing byte-level filtering and compression. Under complex tool-calling contexts, counterfactual ablations confirmed agent performance held flat while compression improved from 20% to 47%. One week to localise and demo, one month to land as a PR-feature; subsequent iteration handed to the engineering team along a roadmap I co-designed."
+    pubs:
+      - pan2026masbound
+      - pan2026sysgt
+    repos:
+      - {name: "MAS_bound_experiments", url: "https://github.com/RunningStone/MAS_bound_experiments", detail: "Experiments for the information-theoretic multi-agent bound."}
+      - {name: "pre-symphony", url: "https://github.com/RunningStone/pre-symphony", detail: "Turns a coding agent's SPEC-based plan into a constrained, staged DAG of trackable issues."}
+
+  multimodal:
+    title: "Multimodal & Virtual Cell"
+    lede: |
+      A single question runs through this work: **when an experiment is too expensive to run at
+      scale, can a model stand in for it?** First for spatial transcriptomics — a £7,000+ assay
+      replaced by a routine H&E slide — then for cellular dynamics itself: generative models that
+      simulate the trajectory a cell *would* take.
+
+      The work sits in the [Secrier Lab](https://secrierlab.github.io) (Computational Cancer
+      Biology, UCL Genetics Institute), whose programme is somatic evolution in cancer — how
+      mutational processes shape cellular plasticity and stress response, and how cells and their
+      microenvironment co-evolve under therapy resistance, with tumour dormancy supported by a
+      UKRI Future Leaders Fellowship. My contribution is the modelling layer: I was the sole AI
+      expert in the group, responsible for all AI infrastructure, tool development, and server
+      management.
+    sections:
+      - title: "1 · Pathology vision–language models → spatial transcriptomics"
+        body: |
+          Trained and fine-tuned multimodal foundation models on gigapixel histopathology images to
+          predict gene expression profiles, effectively replacing £7,000+ spatial transcriptomics
+          experiments with routine H&E slides. Validated that the inferred spatial population
+          structures match ST ground truth, enabling studies previously blocked by budget.
+        items:
+          - name: "PEKA — parameter-efficient knowledge transfer"
+            detail: "Accepted at MICCAI 2025 as top 9%."
+            pub: pan2025peka
+            link: {label: "Code", url: "https://github.com/RunningStone/PEKA"}
+          - name: "Few-shot adaptation of general vision models"
+            detail: "Follow-up to the MICCAI work: a general-domain vision foundation model, adapted with only a small amount of pathology data, matches or exceeds pathology-specialised models (e.g. UNI) on gene-expression prediction from H&E. (Under revision.)"
+      - title: "2 · Single-cell foundation models & cellular dynamics"
+        body: |
+          Where the pathology work infers a *static* molecular state, this line models the
+          *transition* between states — the lab's question of cell-state plasticity, posed as a
+          generative modelling problem with guided cellular state design as the goal.
+        items:
+          - name: "ODE / flow-matching single-cell foundation model"
+            detail: "A generative model based on ordinary differential equations and flow matching to capture temporal cell-state transitions and causal disentanglement; enables guided trajectory design, e.g. inducing specific differentiation paths from a given initial state. Currently under wet-lab validation with collaborators."
+          - name: "Generative dormancy trajectories (scFM + Schrödinger bridge)"
+            detail: "Extended the dynamics work to tumour-cell dormancy: a generative model coupling a single-cell foundation model with a Schrödinger-bridge formulation that, given a non-dormant cell, generates the full entry-into-dormancy trajectory. Validation experiments in progress."
+          - name: "Evolution-aware cell prototypes"
+            detail: "Introduced temporal / cell-evolution-order supervision into single-cell foundation models by learning a prototype-cell dictionary, yielding prototypes tied to evolutionary trajectories. Addresses scFM's weakness in defining novel cell populations relative to classical bioinformatics workflows. (Under revision.)"
+      - title: "3 · Transcriptomic language modelling"
+        body: |
+          Treating transcriptomes as a language a model can be fine-tuned to read — which surfaces
+          biomarkers that classical differential-expression pipelines miss.
+        items:
+          - name: "EMT state classification with LLMs"
+            detail: "Fine-tuned large language models to decode the transcriptomic 'language' underlying epithelial–mesenchymal transition and tumour dormancy, leading to novel biomarkers and therapeutic targets. Under revision at Nature Communications."
+            pub: pan2024emtlm
+          - name: "Foundation-model alignment with dynamical systems"
+            detail: "Integrated multimodal foundation models with cell dynamic systems (ODE/SDE formulations) to model the tumour microenvironment and dormancy mechanisms; contributed to a multi-author study under review at Nature Cancer."
+            pub: celik2025proteostasis
+      - title: "4 · Agents for bioinformatics"
+        body: |
+          The agent line and the biology line meet here — this is where RL post-training first
+          became a practical tool for me rather than a topic.
+        items:
+          - name: "RL-enhanced agent for cell-type classification"
+            detail: "An autonomous agent that retrieves dormancy markers from the literature and executes single-cell validation pipelines; proposed an accompanying benchmark and applied post-training reinforcement learning to improve performance."
+      - title: "5 · Tools"
+        items:
+          - name: "HistoMIL"
+            detail: "A Python package for training Multiple Instance Learning models on histopathology slides — the lab's standard pipeline for whole-slide image work."
+            pub: pan2023histomil
+    pubs:
+      - pan2025peka
+      - pan2024emtlm
+      - celik2026spatialecology
+      - spink2026dormancy
+      - celik2025proteostasis
+      - celik2025spatialcode
+      - jacobson2023hrd
+      - pan2023histomil
+    repos:
+      - {name: "PEKA", url: "https://github.com/RunningStone/PEKA", detail: "Teaching pathology foundation models to predict gene expression."}
+      - {name: "EMT-LM", url: "https://github.com/RunningStone/EMT-LM", detail: "Epithelial-to-mesenchymal transition language model."}
+
+  systems:
+    title: "Systems & Earlier Work"
+    lede: |
+      Before agents, the same method applied to other domains where the data was the hard part.
+      Newest first; the thread connecting them is *production constraints treated as a research
+      problem* rather than an afterthought.
+    sections:
+      - title: "Industrial IoT & time-series foundation models"
+        meta: "ChengShi Tech Ltd., Xi'an · Co-founder & Lead AI Scientist · 2023–2025"
+        body: |
+          Co-founded the company and built its AI-driven industrial IoT platform from 0 to 1,
+          leading a 25-person team (3 AI researchers) to deliver production systems serving
+          **200,000+ residential users** and 2,000+ enterprise clients across multiple regions.
+          Scaled to commercial partnerships and coordinated with Series A investors (a
+          publicly-listed Chinese energy company) before transitioning to an advisory role.
+        items:
+          - name: "Time-series foundation model with adaptive multi-scale decomposition"
+            detail: "Models minute-to-monthly predictions simultaneously through a Lipschitz-constrained cross-temporal-scale architecture, with a Mixture-of-Experts framework whose experts specialise by modality and regional consumption pattern, plus transfer learning from open-domain time-series datasets."
+          - name: "Heterogeneous graph neural network"
+            detail: "Multi-level hierarchy (user → district/enterprise → city) integrating alternative data: weather, building age, upstream industrial signals (coal, metal smelting), pipeline usage history."
+          - name: "Gas leak early-warning system (40%+ → 17% false alarms)"
+            detail: "Replaced an expert-plus-statistical baseline with deep-learning detection; deployed in production with dual-track human–AI verification."
+          - name: "Demand forecasting under asymmetric loss"
+            detail: "Under-purchasing is 3–5× more costly than over-purchasing under China's energy quota system. Preliminary results show 5–10% annual cost savings for regional gas companies; scheduled for production deployment with a 3-year validation protocol."
+          - name: "Multimodal LLM-agent for daily maintenance"
+            detail: "Accesses 11 independent local databases with knowledge-graph-enhanced RAG to analyse, auto-execute, visualise and explain status and key trends for 120,000 local users. Running on the collaborator's platform."
+          - name: "Data infrastructure"
+            detail: "3 years of history from 200,000+ smart meters at minute-level granularity; cold-start strategies (regional-level priors, pre-trained fine-tuning) and model lifecycle management with versioned checkpoints."
+      - title: "Early LLM product ventures"
+        meta: "Co-founder / principal engineer · part-time · 2021–2023"
+        body: |
+          Two ventures run alongside research, both among the earliest production deployments of
+          LLM systems in their verticals. Company names are withheld here.
+        items:
+          - name: "Multi-agent e-commerce content pipeline"
+            detail: "Led a 7-person team to build an end-to-end pipeline from market-intelligence extraction to automated product listing. Hybrid LLM orchestration — GPT-4 for planning and decision-making, Qwen-LoRA for cost-efficient local generation — balancing capability against inference cost. Fine-tuned Stable Diffusion for generative product design (tattoo patterns, T-shirt graphics) and integrated Midjourney and Kling APIs for social-media video. A human-in-the-loop design allowed semi-daily review cycles while the system operated autonomously in between. Exit: the technology stack (codebase and documentation) was acquired by an established mid-sized e-commerce company."
+          - name: "AI-assisted report generation for a consulting practice"
+            detail: "An ESG report generation system serving public-company compliance and competitive-intelligence needs. Achieved a 10× efficiency improvement — initial draft time fell from 2–3 weeks with a 5-person team to 2 days — through fine-tuned language models, managing the technical evolution from fine-tuned BERT to GPT-3.5 against a generation-quality/training-cost trade-off. Built the annotation pipeline over 2 years of historical reports, mapping ESG standards to report logic and turning PDF documents into structured training data. Delivered as an internal tool still in use."
+      - title: "Learned image compression"
+        meta: "Deep Render Ltd. & Imperial College London (Innovate UK) · Research Scientist / Research Associate · 2020–2021"
+        body: |
+          Supervised by Prof. William Knottenbelt. Developed a learned (generative) image
+          compression system that circumvented JPEG-2000 and WebP patent barriers while achieving
+          **30%+ compression improvement**. Independently contributed a neural architecture search
+          framework for efficient operators and a differentiable quantisation bottleneck design
+          (internal use in product line V0.1.3).
+        pubs: [pan2021quantisation]
+      - title: "Ph.D. — explainable biometric attack detection"
+        meta: "University of Kent · Ph.D. Electrical Engineering · 2019"
+        body: |
+          Supervised by Prof. Farzin Deravi. Biometric presentation attack detection with
+          explainable AI modules and an evidence-preservation framework, unifying deep learning and
+          classical statistical approaches for robust spoofing detection.
+        pubs: [pan2022pad]
+    repos:
+      - {name: "claudechic", url: "https://github.com/RunningStone/claudechic", detail: "A stylish terminal UI for Claude Code."}
+      - {name: "CC-sci-manager", url: "https://github.com/RunningStone/CC-sci-manager", detail: "Minimising cognitive cost across multiple concurrent projects."}
+      - {name: "LitGraph", url: "https://github.com/RunningStone/LitGraph", detail: "Assessing paper novelty via graphRAG."}
+      - {name: "transGNN", url: "https://github.com/RunningStone/transGNN", detail: "Graph neural network experiments."}
+    service:
+      - "Reviewer — ICML 2026, NeurIPS 2026, AAAI 2026"
+      - "**ICML 2026 Golden Reviewer** — top-reviewer award, complimentary registration"
