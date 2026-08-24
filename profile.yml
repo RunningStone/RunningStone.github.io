@@ -2,7 +2,7 @@ identity:
   name: Shi Pan
   name_native: null
   title: Founding Researcher, PAVO AI
-  email: psdpluto@gmail.com
+  email: shi.pan@ucl.ac.uk
 affiliations:
   current:
   - institution: PAVO AI
@@ -63,7 +63,7 @@ research:
   - Virtual-cell and single-cell generative modelling
 links:
   github: https://github.com/RunningStone
-  email: psdpluto@gmail.com
+  email: shi.pan@ucl.ac.uk
 selected_publications:
 - pan2026masbound
 - pan2026sysgt
