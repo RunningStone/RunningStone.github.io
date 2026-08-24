@@ -38,7 +38,13 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* masthead */
-.masthead { margin-bottom: 26px; }
+.masthead { margin-bottom: 26px; display: flex; gap: 20px; align-items: flex-start; }
+.masthead .mast-id { flex: 1; min-width: 0; }
+.masthead .photo {
+  width: 104px; height: 104px; flex-shrink: 0; border-radius: 6px;
+  object-fit: cover; object-position: center top; background: var(--panel);
+  border: 1px solid var(--rule);
+}
 .mast-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .brand {
   font-size: 30px; font-weight: 600; letter-spacing: -0.02em;
@@ -135,6 +141,8 @@ code {
 
 @media (max-width: 560px) {
   .page { padding: 36px 18px 56px; }
+  .masthead { gap: 14px; }
+  .masthead .photo { width: 76px; height: 76px; }
   .brand { font-size: 25px; }
   .lede p { font-size: 17px; }
 }

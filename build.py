@@ -156,13 +156,18 @@ def masthead(site: dict, current: str) -> str:
               for k, label in LINK_LABELS if site.get(k)]
     parts.append(html.escape(site["location"]))
     links = " · ".join(parts)
+    photo = (f'<img class="photo" src="{html.escape(site["photo"])}" '
+             f'alt="{html.escape(site["name"])}" width="104" height="104">') if site.get("photo") else ""
     return f"""<header class="masthead">
-  <div class="mast-row">
-    <a class="brand" href="index.html">{html.escape(site["name"])}</a>
-    {home}
+  {photo}
+  <div class="mast-id">
+    <div class="mast-row">
+      <a class="brand" href="index.html">{html.escape(site["name"])}</a>
+      {home}
+    </div>
+    <p class="role">{inline(site["role"])}</p>
+    <p class="contact">{links}</p>
   </div>
-  <p class="role">{inline(site["role"])}</p>
-  <p class="contact">{links}</p>
 </header>"""
 
 
@@ -262,6 +267,11 @@ def build(out_dir: Path, updated: str) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "assets").mkdir(exist_ok=True)
     (out_dir / "assets" / "style.css").write_text(CSS, encoding="utf-8")
+    src_assets = ROOT / "assets"
+    if src_assets.is_dir():
+        for f in src_assets.iterdir():
+            if f.is_file() and not f.name.startswith("."):
+                (out_dir / "assets" / f.name).write_bytes(f.read_bytes())
 
     # --- home ---
     idx = data["index"]
@@ -339,7 +349,13 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* masthead */
-.masthead { margin-bottom: 26px; }
+.masthead { margin-bottom: 26px; display: flex; gap: 20px; align-items: flex-start; }
+.masthead .mast-id { flex: 1; min-width: 0; }
+.masthead .photo {
+  width: 104px; height: 104px; flex-shrink: 0; border-radius: 6px;
+  object-fit: cover; object-position: center top; background: var(--panel);
+  border: 1px solid var(--rule);
+}
 .mast-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .brand {
   font-size: 30px; font-weight: 600; letter-spacing: -0.02em;
@@ -436,6 +452,8 @@ code {
 
 @media (max-width: 560px) {
   .page { padding: 36px 18px 56px; }
+  .masthead { gap: 14px; }
+  .masthead .photo { width: 76px; height: 76px; }
   .brand { font-size: 25px; }
   .lede p { font-size: 17px; }
 }
