@@ -101,7 +101,7 @@ pages:
           - name: "Controlled rollout protocol"
             detail: "Produces comparable canonical JSONL trajectories across CLI agents under pinned sandboxes and explicit taint rules — the reproducibility layer without which cross-agent numbers mean nothing."
           - name: "AutoGT — automated evaluation-set generation"
-            detail: "A domain-prior-guided agentic pipeline that extracts knowledge from a real enterprise software system and converts it into QA evaluation sets. Reaches Spearman > 0.7 against expert hand-written tests on system scoring while covering most expert-defined categories. Delivered into PAVO's Eval Factory as a core pipeline; methods paper under review."
+            detail: "A domain-prior-guided agentic pipeline that extracts knowledge from a real enterprise software system and converts it into QA evaluation sets. The generated tests rank systems in strong agreement with expert hand-written tests while covering most expert-defined categories. Delivered into the product; methods paper under review."
             pub: pan2026sysgt
           - name: "27-operator evaluation spectrum"
             detail: "An evaluation spectrum grounded in human working-memory and metacognition theory, applied as a systematic assessment across the three major closed-source model families."
@@ -114,7 +114,7 @@ pages:
           programmatic reward signal, which then drives a DPO/GRPO pipeline.
         items:
           - name: "Programmatic process rewards → DPO/GRPO"
-            detail: "Fine-tuned Qwen2.5-0.5B beats base Qwen2.5-0.5B by ~10% on an internal tool-behaviour evaluation set — primarily detection of illegal operations introduced via random sampling or context injection during tool calls."
+            detail: "Fine-tuning Qwen2.5-0.5B this way improved it by roughly 10% over its own base on an internal tool-behaviour evaluation — primarily detection of illegal operations introduced via random sampling or context injection during tool calls."
           - name: "Batched evaluation environments from seeds"
             detail: "To make that evaluation possible, built an agent that uses an environment graph to construct tool lists plus differentiated Docker images with varying dependency libraries — yielding many test environments from a small set of seeds and an LLM."
       - part: "Practice"
@@ -125,17 +125,17 @@ pages:
           theory above becomes an observable curve.
         items:
           - name: "Mini-Uber — stress-testing multi-agent operations"
-            detail: "An immutable Manhattan-scale ride-hailing simulation (demand, user distribution, congestion, rainstorms). A two-layer multi-agent system with distinct coder and manager roles maintains a ride-matching codebase under escalating external pressure; the metric is how long it survives. Without competitors, Sonnet-driven agents averaged 94 iteration steps; adding external competition and regulatory signals collapsed this to ~50. Code quality declined after ~10 steps, manager agents drifted into blind forecasting and hallucination, and the codebase eventually collapsed."
+            detail: "An immutable Manhattan-scale ride-hailing simulation (demand, user distribution, congestion, rainstorms). A two-layer multi-agent system with distinct coder and manager roles maintains a ride-matching codebase under escalating external pressure; the metric is how long it survives. Introducing external competition and regulatory signals roughly halved the survival horizon. Code quality declined early — long before the run ended — manager agents drifted into blind forecasting and hallucination, and the codebase eventually collapsed."
           - name: "Lifelong-learning benchmark for long-lived repositories"
-            detail: "A systematic review found that as of early 2026 no long-horizon coding-agent benchmark measures an agent's ability to independently develop and operate a long-lived repository. Constructed four mutually independent software projects with minimal human-written code, mined candidate features from open-source repositories into an expert-reviewed command pool, and required agents to maintain the repositories against extracted issues. Most architectures could not sustain beyond 20 issues before repository quality scores collapsed."
+            detail: "A systematic review found that as of early 2026 no long-horizon coding-agent benchmark measures an agent's ability to independently develop and operate a long-lived repository. Constructed four mutually independent software projects with minimal human-written code, mined candidate features from open-source repositories into an expert-reviewed command pool, and required agents to maintain the repositories against extracted issues. Most architectures collapsed well short of the intended horizon, with repository quality scores falling away rather than plateauing."
       - part: "Practice"
         title: "Shipped to production"
         body: |
           None of this is an academic exercise — one component landed in a production codebase
           within my first month at PAVO.
         items:
-          - name: "Dynamic context compression (20% → 47%)"
-            detail: "Read into the production codebase and found that context compression was rule-based — selecting partial turn content with no semantic-level compression of the current turn. Built a two-model pipeline (LLMLingua-2 + Qwen2.5-0.5B) doing byte-level filtering and compression. Under complex tool-calling contexts, counterfactual ablations confirmed agent performance held flat while compression improved from 20% to 47%. One week to localise and demo, one month to land as a PR-feature; subsequent iteration handed to the engineering team along a roadmap I co-designed."
+          - name: "Dynamic context compression — more than doubled"
+            detail: "Read into the production codebase and found that context compression was rule-based — selecting partial turn content with no semantic-level compression of the current turn. Built a two-model pipeline (LLMLingua-2 + Qwen2.5-0.5B) doing byte-level filtering and compression. Under complex tool-calling contexts, counterfactual ablations confirmed agent performance held flat while the compression rate more than doubled. One week to localise and demo, one month to land as a PR-feature; subsequent iteration handed to the engineering team along a roadmap I co-designed."
     pubs:
       - pan2026masbound
       - pan2026sysgt

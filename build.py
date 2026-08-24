@@ -9,6 +9,7 @@ Usage:  python build.py [--out site]
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import re
 from pathlib import Path
@@ -244,7 +245,7 @@ PAGE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v={cssver}">
 </head>
 <body>
 <div class="page">
@@ -267,6 +268,7 @@ def build(out_dir: Path, updated: str) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "assets").mkdir(exist_ok=True)
     (out_dir / "assets" / "style.css").write_text(CSS, encoding="utf-8")
+    cssver = hashlib.sha256(CSS.encode("utf-8")).hexdigest()[:8]
     src_assets = ROOT / "assets"
     if src_assets.is_dir():
         for f in src_assets.iterdir():
@@ -289,7 +291,7 @@ def build(out_dir: Path, updated: str) -> None:
     (out_dir / "index.html").write_text(PAGE.format(
         title=f'{site["name"]} — Research', desc=html.escape(site["role"]),
         mast=masthead(site, "index"), nav=nav_html(site, "index"),
-        body=body, updated=updated), encoding="utf-8")
+        body=body, updated=updated, cssver=cssver), encoding="utf-8")
 
     # --- topic pages ---
     for pid, page in data["pages"].items():
@@ -304,7 +306,7 @@ def build(out_dir: Path, updated: str) -> None:
         (out_dir / f"{pid}.html").write_text(PAGE.format(
             title=f'{page["title"]} — {site["name"]}', desc=html.escape(page["title"]),
             mast=masthead(site, pid), nav=nav_html(site, pid),
-            body="".join(parts), updated=updated), encoding="utf-8")
+            body="".join(parts), updated=updated, cssver=cssver), encoding="utf-8")
 
     print(f"✓ built {len(data['pages']) + 1} pages → {out_dir}")
 
