@@ -100,7 +100,7 @@ pages:
           - name: "Controlled rollout protocol"
             detail: "Produces comparable canonical JSONL trajectories across CLI agents under pinned sandboxes and explicit taint rules — the reproducibility layer without which cross-agent numbers mean nothing."
           - name: "AutoGT — automated evaluation-set generation"
-            detail: "A domain-prior-guided agentic pipeline that extracts knowledge from a real enterprise software system and converts it into QA evaluation sets. The generated tests rank systems in strong agreement with expert hand-written tests while covering most expert-defined categories. Delivered into the product; methods paper under review."
+            detail: "A domain-prior-guided agentic pipeline that extracts knowledge from a real enterprise software system and converts it into QA evaluation sets. The generated tests rank systems in strong agreement with expert hand-written tests while covering most expert-defined categories. Delivered into the product; written up as a methods paper."
             pub: pan2026sysgt
           - name: "27-operator evaluation spectrum"
             detail: "An evaluation spectrum grounded in human working-memory and metacognition theory, applied as a systematic assessment across the three major closed-source model families."

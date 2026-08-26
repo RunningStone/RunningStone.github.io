@@ -106,7 +106,7 @@ def under_review(f: dict) -> bool:
 
 def status_of(f: dict) -> str:
     note = f.get("note", "")
-    m = re.match(r"(Under review[^;]*|Under revision[^;]*|Accepted[^;]*)", note)
+    m = re.match(r"(Under review[^;]*|Under revision[^;]*|Accepted[^;]*|Manuscript[^;]*)", note)
     return delatex(m.group(1)) if m else ""
 
 
@@ -205,6 +205,9 @@ def render_items(items: list[dict], bib: dict) -> str:
                 venue = acronym.group(1)
             if under_review(f) and not is_preprint_venue(venue):
                 venue = "under review"
+            elif not fmt_venue(f):
+                # no venue at all — say what the paper actually is
+                venue = (status_of(f) or "manuscript").lower()
             tail.append(f'<a class="tag" href="#pub-{it["pub"]}">Paper · {html.escape(venue)}</a>')
         if it.get("link"):
             tail.append(f'<a class="tag" href="{it["link"]["url"]}" target="_blank" rel="noopener">{html.escape(it["link"]["label"])}</a>')
