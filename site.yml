@@ -72,7 +72,6 @@ pages:
           multi-agent arrangement can achieve. Validated on SWE-bench, and carried through to the
           reliability mechanisms that follow from it — the bound is not the end of the argument,
           it is what tells the engineering where to push.
-        pubs: [pan2026masbound]
       - part: "Theory"
         title: "Lifelong learning under survival pressure"
         body: |

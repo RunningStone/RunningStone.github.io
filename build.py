@@ -92,6 +92,18 @@ def pub_links(f: dict) -> list[tuple[str, str]]:
     return links
 
 
+PREPRINT_SERVERS = ("arxiv", "biorxiv", "medrxiv", "ssrn")
+
+
+def is_preprint_venue(venue: str) -> bool:
+    v = venue.lower()
+    return any(p in v for p in PREPRINT_SERVERS)
+
+
+def under_review(f: dict) -> bool:
+    return f.get("note", "").lower().startswith(("under review", "under revision", "submitted"))
+
+
 def status_of(f: dict) -> str:
     note = f.get("note", "")
     m = re.match(r"(Under review[^;]*|Under revision[^;]*|Accepted[^;]*)", note)
@@ -101,7 +113,10 @@ def status_of(f: dict) -> str:
 def render_pub(key: str, f: dict) -> str:
     title = html.escape(delatex(f.get("title", key)))
     authors = fmt_authors(f.get("author", ""))
-    venue = html.escape(fmt_venue(f))
+    venue = fmt_venue(f)
+    if venue and under_review(f) and not is_preprint_venue(venue):
+        venue = f"Submitted to {venue}"
+    venue = html.escape(venue)
     year = f.get("year", "")
     status = html.escape(status_of(f))
     links = "".join(
@@ -188,6 +203,8 @@ def render_items(items: list[dict], bib: dict) -> str:
             acronym = re.search(r"\(([A-Z][A-Za-z-]{1,12})\)", venue)
             if acronym:
                 venue = acronym.group(1)
+            if under_review(f) and not is_preprint_venue(venue):
+                venue = "under review"
             tail.append(f'<a class="tag" href="#pub-{it["pub"]}">Paper · {html.escape(venue)}</a>')
         if it.get("link"):
             tail.append(f'<a class="tag" href="{it["link"]["url"]}" target="_blank" rel="noopener">{html.escape(it["link"]["label"])}</a>')
