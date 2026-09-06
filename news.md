@@ -1,4 +1,0 @@
-- 2026-08: KDD-W 2026 submission on System Ground Truth (AutoGT) under review
-- 2026-06: Named ICML 2026 Golden Reviewer (top-reviewer award)
-- 2026-01: Joined PAVO AI as Founding Researcher
-- 2025-09: MICCAI 2025 paper accepted (top 9%)
