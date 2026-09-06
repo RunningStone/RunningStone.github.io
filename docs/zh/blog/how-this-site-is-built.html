@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>这个站是怎么搭的：双语、静态、一个脚本 — Shi Pan</title>
+<meta name="description" content="一个带博客、评论和访问统计的双语学术主页——没有框架，除 PyYAML 外零构建依赖，唯一的事实来源是一份 BibTeX 文件。">
+<link rel="stylesheet" href="/assets/style.css?v=437480be">
+<link rel="alternate" hreflang="en" href="https://runningstone.github.io/blog/how-this-site-is-built.html">
+<link rel="alternate" hreflang="zh-CN" href="https://runningstone.github.io/zh/blog/how-this-site-is-built.html">
+<link rel="alternate" hreflang="x-default" href="https://runningstone.github.io/blog/how-this-site-is-built.html">
+<link rel="alternate" type="application/rss+xml" title="博客" href="/zh/feed.xml">
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <img class="photo" src="/assets/photo.jpeg" alt="Shi Pan" width="104" height="104">
+  <div class="mast-id">
+    <div class="mast-row">
+      <span class="mast-left"><a class="brand" href="/zh/">Shi Pan</a>
+      <a class="crumb" href="/zh/">← 研究</a></span>
+      <a class="lang" href="/blog/how-this-site-is-built.html" hreflang="en" lang="en" data-lang="en">English</a>
+    </div>
+    <p class="role">PAVO AI 创始研究员 · UCL Secrier 实验室 Research Fellow</p>
+    <p class="contact"><a href="mailto:shi.pan@ucl.ac.uk">shi.pan@ucl.ac.uk</a> · <a href="https://scholar.google.com/citations?user=hx6VL0UAAAAJ" target="_blank" rel="noopener">Google Scholar</a> · <a href="https://github.com/RunningStone" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/shi-pan-a2879a92" target="_blank" rel="noopener">LinkedIn</a> · 英国伦敦</p>
+  </div>
+</header>
+<nav class="nav"><a class="" href="/zh/">研究</a><a class="" href="/zh/agent.html">智能体与后训练</a><a class="" href="/zh/multimodal.html">多模态与虚拟细胞</a><a class="" href="/zh/systems.html">系统与早期工作</a><a class="on" href="/zh/blog.html">博客</a></nav>
+<main>
+<article class="post"><h1>这个站是怎么搭的：双语、静态、一个脚本</h1><p class="post-meta"><time datetime="2026-09-06">2026 年 9 月 6 日</time> · <span class="item-tags"><span class="tag">meta</span><span class="tag">tooling</span></span></p><p class="translated">本文译自原文，以原文为准： <a href="/blog/how-this-site-is-built.html" hreflang="en">English</a></p><div class="post-body"><p>这个站点就是一个 Python 脚本。它读一份 BibTeX、两份 YAML 和一个 markdown 文件夹，把纯 HTML 写进 GitHub Pages 托管的 <code>docs/</code> 目录。没有 Jekyll，没有 Hugo，没有 JavaScript 构建链。原因值得记下来， 因为我做大多数工具选型时用的都是同一套理由。</p><h2 id="事实只有一个来源">事实只有一个来源</h2><p>发表列表是这个站上唯一会被别人核对的内容。它来自一份可以过 DBLP / arXiv 核查的 <code>publications.bib</code>， 所有提到论文的页面都从这个文件渲染。文字可以带观点，事实不允许漂移。</p><h2 id="两种语言-两棵-url-树">两种语言，两棵 URL 树</h2><p>不用 JavaScript 切换文本，而是让每个页面存在两份：</p><table><thead><tr><th>English</th><th>中文</th></tr></thead><tbody><tr><td><code>/agent.html</code></td><td><code>/zh/agent.html</code></td></tr><tr><td><code>/blog/&lt;slug&gt;.html</code></td><td><code>/zh/blog/&lt;slug&gt;.html</code></td></tr><tr><td><code>/feed.xml</code></td><td><code>/zh/feed.xml</code></td></tr></tbody></table><p>右上角的语言按钮只是一个指向对应页面的链接，每个页面都带有指向另一语言的 <code>hreflang</code>。因此转发出去的链接 永远以发送者当时阅读的语言打开，搜索引擎看到的是两个真实页面，而不是一个会变形的页面。唯一涉及的脚本 只做一件事：把上次的选择记进 <code>localStorage</code>，在你访问根 URL 时应用它。</p><p>中文内容是英文结构上的一层*稀疏覆盖*——一份形状相同、只携带译文的 YAML。所有事实字段（发表 key、链接、数字） 都是继承来的，所以翻译不可能无意中引入新的说法：</p><pre><code class="language-python">def merge(base, over):
+    if isinstance(base, dict) and isinstance(over, dict):
+        return {k: merge(base[k], over[k]) if k in over else v for k, v in base.items()} | \
+               {k: v for k, v in over.items() if k not in base}
+    if isinstance(base, list) and isinstance(over, list):
+        return [merge(b, o) for b, o in zip(base, over)] + base[len(over):]
+    return over</code></pre><h2 id="没有后端的评论与计数">没有后端的评论与计数</h2><p>GitHub Pages 只托管文件，别的什么都不做。评论用 <a href="https://giscus.app" target="_blank" rel="noopener">giscus</a>：每篇文章对应站点仓库里的 一个 GitHub Discussion，数据和源码放在一起，读者用已有的 GitHub 账号登录即可。一篇文章的两个语言版本 指向同一个讨论串。</p><p>访问量由 <a href="https://www.goatcounter.com" target="_blank" rel="noopener">GoatCounter</a> 统计，它不存个人数据，也不需要 cookie 横幅。数字是否 显示在页面上是一个开关，默认关闭。</p><blockquote><p>这套技术栈里每一件东西都过同一道测试：如果这个服务消失了，站点还能构建吗？三个答案都是能——最坏的情况 是少一个评论框。</p></blockquote></div></article><p class="post-nav"><a href="/zh/blog.html">← 全部文章</a></p>
+</main>
+<footer class="foot">最近更新 2026 年 9 月 · 全站由同一份 CV 事实源生成。</footer>
+</div>
+<script>
+(function(){var K="site-lang",a=document.querySelector("a.lang");
+if(a){a.addEventListener("click",function(){try{localStorage.setItem(K,a.dataset.lang)}catch(e){}})}
+var p=location.pathname;if(p==="/"||p==="/index.html"){try{if(localStorage.getItem(K)==="zh"){location.replace("/zh/")}}catch(e){}}})();
+</script>
+</body>
+</html>

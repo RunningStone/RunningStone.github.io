@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How this site is built: bilingual, static, one script — Shi Pan</title>
+<meta name="description" content="A two-language academic homepage with a blog, comments and analytics — with no framework, no build dependencies beyond PyYAML, and one BibTeX file as the only source of facts.">
+<link rel="stylesheet" href="/assets/style.css?v=437480be">
+<link rel="alternate" hreflang="en" href="https://runningstone.github.io/blog/how-this-site-is-built.html">
+<link rel="alternate" hreflang="zh-CN" href="https://runningstone.github.io/zh/blog/how-this-site-is-built.html">
+<link rel="alternate" hreflang="x-default" href="https://runningstone.github.io/blog/how-this-site-is-built.html">
+<link rel="alternate" type="application/rss+xml" title="Blog" href="/feed.xml">
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <img class="photo" src="/assets/photo.jpeg" alt="Shi Pan" width="104" height="104">
+  <div class="mast-id">
+    <div class="mast-row">
+      <span class="mast-left"><a class="brand" href="/">Shi Pan</a>
+      <a class="crumb" href="/">← Research</a></span>
+      <a class="lang" href="/zh/blog/how-this-site-is-built.html" hreflang="zh-CN" lang="zh-CN" data-lang="zh">中文</a>
+    </div>
+    <p class="role">Founding Researcher, PAVO AI · Research Fellow, Secrier Lab, UCL</p>
+    <p class="contact"><a href="mailto:shi.pan@ucl.ac.uk">shi.pan@ucl.ac.uk</a> · <a href="https://scholar.google.com/citations?user=hx6VL0UAAAAJ" target="_blank" rel="noopener">Google Scholar</a> · <a href="https://github.com/RunningStone" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/shi-pan-a2879a92" target="_blank" rel="noopener">LinkedIn</a> · London, UK</p>
+  </div>
+</header>
+<nav class="nav"><a class="" href="/">Research</a><a class="" href="/agent.html">Agents &amp; Post-Training</a><a class="" href="/multimodal.html">Multimodal &amp; Virtual Cell</a><a class="" href="/systems.html">Systems &amp; Earlier Work</a><a class="on" href="/blog.html">Blog</a></nav>
+<main>
+<article class="post"><h1>How this site is built: bilingual, static, one script</h1><p class="post-meta"><time datetime="2026-09-06">2026-09-06</time> · <span class="item-tags"><span class="tag">meta</span><span class="tag">tooling</span></span></p><div class="post-body"><p>This site is a single Python script. It reads a BibTeX file, two YAML files and a folder of markdown, and writes plain HTML into a <code>docs/</code> directory that GitHub Pages serves. No Jekyll, no Hugo, no JavaScript build. The reasons are worth writing down, because they are the same reasons I make most tooling decisions.</p><h2 id="one-source-of-facts">One source of facts</h2><p>The publication list is the only thing on this site that other people will check. It comes from a <code>publications.bib</code> that can be run through a DBLP / arXiv fact-checker, and every page that mentions a paper renders it from that file. The prose is allowed to be opinionated; the facts are not allowed to drift.</p><h2 id="two-languages-two-url-trees">Two languages, two URL trees</h2><p>Rather than toggling text with JavaScript, every page exists twice:</p><table><thead><tr><th>English</th><th>中文</th></tr></thead><tbody><tr><td><code>/agent.html</code></td><td><code>/zh/agent.html</code></td></tr><tr><td><code>/blog/&lt;slug&gt;.html</code></td><td><code>/zh/blog/&lt;slug&gt;.html</code></td></tr><tr><td><code>/feed.xml</code></td><td><code>/zh/feed.xml</code></td></tr></tbody></table><p>The language button in the top-right corner is just a link to the sibling page, and each page carries <code>hreflang</code> links to the other. A shared link therefore always opens in the language the sender was reading, and search engines see two real pages instead of one page that changes shape. The only script involved remembers the last choice in <code>localStorage</code> and applies it when you land on the root URL.</p><p>The Chinese content is a <em>sparse overlay</em> on the English structure — a YAML file with the same shape that only carries translated strings. Everything factual (publication keys, links, numbers) is inherited, so a translation cannot accidentally introduce a new claim:</p><pre><code class="language-python">def merge(base, over):
+    if isinstance(base, dict) and isinstance(over, dict):
+        return {k: merge(base[k], over[k]) if k in over else v for k, v in base.items()} | \
+               {k: v for k, v in over.items() if k not in base}
+    if isinstance(base, list) and isinstance(over, list):
+        return [merge(b, o) for b, o in zip(base, over)] + base[len(over):]
+    return over</code></pre><h2 id="comments-and-counting-without-a-backend">Comments and counting without a backend</h2><p>GitHub Pages hosts files, nothing else. Comments are <a href="https://giscus.app" target="_blank" rel="noopener">giscus</a>: each post maps to a GitHub Discussion in the site&#x27;s own repository, so the data lives with the source and readers sign in with an account they already have. Both language versions of a post point at the same discussion.</p><p>Visits are counted by <a href="https://www.goatcounter.com" target="_blank" rel="noopener">GoatCounter</a>, which stores no personal data and needs no cookie banner. Whether the number is shown on the page is a one-line switch; by default it is not.</p><blockquote><p>The test for every piece of this stack was the same: if the service disappears, does the site still build? For all three answers the answer is yes — the worst case is a missing comment box.</p></blockquote></div></article><p class="post-nav"><a href="/blog.html">← All posts</a></p>
+</main>
+<footer class="foot">Last updated September 2026 · Built from a single CV source of truth.</footer>
+</div>
+<script>
+(function(){var K="site-lang",a=document.querySelector("a.lang");
+if(a){a.addEventListener("click",function(){try{localStorage.setItem(K,a.dataset.lang)}catch(e){}})}
+var p=location.pathname;if(p==="/"||p==="/index.html"){try{if(localStorage.getItem(K)==="zh"){location.replace("/zh/")}}catch(e){}}})();
+</script>
+</body>
+</html>
