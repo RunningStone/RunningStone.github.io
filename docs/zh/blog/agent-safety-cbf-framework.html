@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>安全是到边界的距离：Agent 轨迹的控制屏障框架 — Shi Pan</title>
-<meta name="description" content="一个建立在控制屏障函数上的 LLM agent 轨迹安全形式化框架：观测轨迹的抽象状态、符号即安全、数值即裕度的标量屏障 h、作为唯一保证来源的一步不变性条件、取 min 的组合与 argmin 归因、带 fallback 的最小干预过滤、抽象误差的显式 ε 带、写成参数的对手。三条路线实例化它：符号编译型、环境驱动型、语义学习型。每一步都放在自动驾驶侧的对应物旁边（RSS、Safety Force Field、Hamilton-Jacobi 可达性、STL）。">
+<title>用控制屏障函数描述 Agent 安全 — Shi Pan</title>
+<meta name="description" content="尝试用安全裕度描述 LLM agent 的运行轨迹，定义抽象状态、屏障函数和动作过滤器，并比较从工具 schema、环境模型和数据学习中构造它们的三种方式。文中对照自动驾驶中的相关工作，说明各自需要的假设与适用范围。">
 <link rel="stylesheet" href="/assets/style.css?v=b3e84b1c">
 <link rel="alternate" hreflang="en" href="https://runningstone.github.io/blog/agent-safety-cbf-framework.html">
 <link rel="alternate" hreflang="zh-CN" href="https://runningstone.github.io/zh/blog/agent-safety-cbf-framework.html">
@@ -28,9 +28,9 @@
 </header>
 <nav class="nav"><a class="" href="/zh/">研究</a><a class="" href="/zh/agent.html">智能体与后训练</a><a class="" href="/zh/multimodal.html">多模态与虚拟细胞</a><a class="" href="/zh/systems.html">系统与早期工作</a><a class="on" href="/zh/blog.html">博客</a></nav>
 <main>
-<article class="post"><h1>安全是到边界的距离：Agent 轨迹的控制屏障框架</h1><p class="post-meta"><time datetime="2026-09-08">2026 年 9 月 8 日</time> · <span class="item-tags"><span class="tag">agent-safety</span><span class="tag">control-barrier-function</span><span class="tag">formal-model</span><span class="tag">autonomous-driving</span></span></p><div class="post-body"><p><a href="/assets/agent-safety-cbf-framework/index.html?lang=zh">这篇文章是一个可交互页面。如果没有自动跳转，请点这里打开。</a></p></div></article><p class="post-nav"><a href="/zh/blog.html">← 全部文章</a></p>
+<article class="post"><h1>用控制屏障函数描述 Agent 安全</h1><p class="post-meta"><time datetime="2026-09-08">2026 年 9 月 8 日</time> · <span class="item-tags"><span class="tag">agent-safety</span><span class="tag">control-barrier-function</span><span class="tag">formal-model</span><span class="tag">autonomous-driving</span></span></p><div class="post-body"><p><a href="/assets/agent-safety-cbf-framework/index.html?lang=zh">正在打开交互文章。若未自动跳转，请点击这里。</a></p></div></article><p class="post-nav"><a href="/zh/blog.html">← 全部文章</a></p>
 </main>
-<footer class="foot">最近更新 2026 年 9 月 · 全站由同一份 CV 事实源生成。</footer>
+<footer class="foot">最近更新 2026 年 9 月</footer>
 </div>
 <script>
 (function(){var K="site-lang",a=document.querySelector("a.lang");
