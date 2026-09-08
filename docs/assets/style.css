@@ -206,6 +206,8 @@ a.tag:hover { text-decoration: none; border-color: var(--accent); }
 .post-body li { margin: 0 0 5px; }
 .post-body hr { border: 0; border-top: 1px solid var(--rule); margin: 28px 0; }
 .post-nav { margin-top: 34px; font-size: 14.5px; }
+/* wide posts: the body breaks out of the 780px column up to 1240px, centred on it (no transform, so fixed/sticky children keep working) */
+.post.wide .post-body { width: min(1240px, calc(100vw - 48px)); margin-left: calc(50% - min(620px, 50vw - 24px)); }
 .comments { margin-top: 40px; }
 
 .foot {
