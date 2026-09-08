@@ -96,7 +96,8 @@ html[lang=en] .ssl .grandma::before{content:"🧓 Grandma view"} html[lang=en] .
 .ssl .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
 .ssl .stat{background:var(--p1);border:1px solid var(--bd);border-radius:10px;padding:10px 12px}
 .ssl .stat .v{font-size:24px;font-weight:700;color:var(--lnk)} .ssl .stat .k{font-size:12px;color:var(--dim)}
-.ssl .svgwrap{overflow-x:auto;border:1px solid var(--bd);border-radius:12px;background:var(--p1);padding:6px}
+.ssl .svgwrap{overflow-x:auto;border:1px solid var(--bd);border-radius:12px;background:var(--p1);padding:6px;position:relative;width:calc(100vw - 48px);left:50%;margin-left:calc(24px - 50vw)}
+.ssl .svgwrap svg{min-width:var(--treew,1320px)}
 .ssl svg{display:block;color:var(--ink2)} .ssl svg text{font-family:inherit}
 .ssl .svgnode{cursor:pointer} .ssl .svgnode rect{transition:.15s} .ssl .svgnode:hover rect{filter:brightness(1.06)}
 .ssl .edge{fill:none;stroke:var(--edge);stroke-width:1.6;opacity:.85} .ssl .edge.dashed{stroke:var(--edge2);stroke-dasharray:6 4} .ssl .edge.dotted{stroke:var(--edge3);stroke-dasharray:2 4}
@@ -224,7 +225,7 @@ function wrap(label){
   const s = label.replace(/^[🏠\s]+/, '');
   if (LANG === 'en') {
     const lines = []; let cur = '';
-    for (const w of s.split(' ')) { if (cur && (cur + ' ' + w).length > 22) { lines.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); }
+    for (const w of s.split(' ')) { if (cur && (cur + ' ' + w).length > 24) { lines.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); }
     if (cur) lines.push(cur);
     if (lines.length > 3) { lines.length = 3; lines[2] = lines[2].slice(0, 20) + '…'; }
     return lines;
@@ -233,13 +234,13 @@ function wrap(label){
   let cut = max; for (const sep of ['：', ':', '/', ' ', '（', '(']) { const i = s.lastIndexOf(sep, max); if (i > 4) { cut = i + 1; break; } }
   return [s.slice(0, cut), s.slice(cut, cut + max + 2) + (s.length > cut + max + 2 ? '…' : '')];
 }
-const W=1200, NW=156, NH=60, LY=136, TOP=28, MARG=16;
+const W=1320, NW=170, NH=62, LY=140, TOP=28, MARG=16;
 const layers={}; DATA.nodes.forEach(n=>{(layers[n.layer]=layers[n.layer]||[]).push(n)});
 const pos={};
 Object.keys(layers).sort((a,b)=>a-b).forEach(L=>{ const ns=layers[L]; const k=ns.length; const span=(W-2*MARG)/k; ns.forEach((n,i)=>{ pos[n.id]={x:MARG+(i+0.5)*span-NW/2, y:TOP+L*LY}; }); });
 DATA.edges.filter(e=>e.style==='solid'&&/^T\d$/.test(e.src)&&/^A\d$/.test(e.dst)).forEach(e=>{pos[e.dst].x=pos[e.src].x});
 const HH=TOP+(Object.keys(layers).length)*LY;
-const svg=document.getElementById('svg'); svg.setAttribute('viewBox',`0 0 ${W} ${HH}`); svg.setAttribute('width','100%'); svg.style.minWidth='980px';
+const svg=document.getElementById('svg'); svg.setAttribute('viewBox',`0 0 ${W} ${HH}`); svg.setAttribute('width','100%'); svg.style.setProperty('--treew', W+'px'); svg.style.minWidth=W+'px';
 function path(a,b){const s=pos[a],t=pos[b]; const x1=s.x+NW/2,y1=s.y+NH,x2=t.x+NW/2,y2=t.y; const dy=Math.max(30,(y2-y1)/2); return `M${x1},${y1} C${x1},${y1+dy} ${x2},${y2-dy} ${x2},${y2}`}
 function renderTree(){
   let g=''; const notes=[]; const cw = LANG === 'en' ? 6.4 : 10.5;
