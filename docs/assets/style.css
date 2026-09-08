@@ -93,6 +93,15 @@ code {
   background: var(--panel); padding: 1px 5px; border-radius: 3px;
 }
 
+/* thesis box (home) */
+.thesis {
+  margin: 0 0 34px; padding: 20px 24px;
+  border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 7px;
+  background: var(--panel);
+}
+.thesis p { margin: 0; font-size: 17.5px; line-height: 1.7; color: var(--ink); }
+html[lang="zh-CN"] .thesis p { line-height: 1.9; }
+
 /* threads (home) */
 .threads { display: grid; gap: 12px; }
 .thread {
