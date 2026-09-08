@@ -34,6 +34,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 html[lang="zh-CN"] body { line-height: 1.8; }
+/* running text is fully justified on every page; single-line labels and flex rows are unaffected */
+p, li, .thread-blurb, .item-detail, .repo-detail, .post-summary, blockquote, figcaption, td, th {
+  text-align: justify; hyphens: auto; -webkit-hyphens: auto;
+}
+html[lang="zh-CN"] p, html[lang="zh-CN"] li { text-justify: inter-character; }
 .page { max-width: var(--maxw); margin: 0 auto; padding: 56px 24px 72px; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
