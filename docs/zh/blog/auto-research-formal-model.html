@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>我们能模仿人理解世界的步骤吗？ — Shi Pan</title>
-<meta name="description" content="一个自动研究的形式化模型：显式状态（工作图 + 冻结候选空间上的联合后验）、自带冻结观察模型并按单位成本信息增益选择的动作、只吃已核验证据的 Bayes 更新、独立的图采用门、显式的假设空间扩展支路、封存且可重放的终态。按读文献、跑探针、跑 benchmark 三条循环写出。">
+<meta name="description" content="为能够读文献、做小实验和评估候选方案的 agent 建立形式化模型：记录当前假设与不确定性，按单位成本的期望信息增益选择动作，只用核验后的证据更新，并区分信念更新、工作图采用和假设空间扩展。">
 <link rel="stylesheet" href="/assets/style.css?v=b3e84b1c">
 <link rel="alternate" hreflang="en" href="https://runningstone.github.io/blog/auto-research-formal-model.html">
 <link rel="alternate" hreflang="zh-CN" href="https://runningstone.github.io/zh/blog/auto-research-formal-model.html">
@@ -28,9 +28,9 @@
 </header>
 <nav class="nav"><a class="" href="/zh/">研究</a><a class="" href="/zh/agent.html">智能体与后训练</a><a class="" href="/zh/multimodal.html">多模态与虚拟细胞</a><a class="" href="/zh/systems.html">系统与早期工作</a><a class="on" href="/zh/blog.html">博客</a></nav>
 <main>
-<article class="post"><h1>我们能模仿人理解世界的步骤吗？</h1><p class="post-meta"><time datetime="2026-09-08">2026 年 9 月 8 日</time> · <span class="item-tags"><span class="tag">auto-research</span><span class="tag">bayesian</span><span class="tag">active-learning</span><span class="tag">formal-model</span></span></p><div class="post-body"><p><a href="/assets/auto-research-formal-model/index.html?lang=zh">这篇文章是一个可交互页面。如果没有自动跳转，请点这里打开。</a></p></div></article><p class="post-nav"><a href="/zh/blog.html">← 全部文章</a></p>
+<article class="post"><h1>我们能模仿人理解世界的步骤吗？</h1><p class="post-meta"><time datetime="2026-09-08">2026 年 9 月 8 日</time> · <span class="item-tags"><span class="tag">auto-research</span><span class="tag">bayesian</span><span class="tag">active-learning</span><span class="tag">formal-model</span></span></p><div class="post-body"><p><a href="/assets/auto-research-formal-model/index.html?lang=zh">正在打开交互文章。若未自动跳转，请点击这里。</a></p></div></article><p class="post-nav"><a href="/zh/blog.html">← 全部文章</a></p>
 </main>
-<footer class="foot">最近更新 2026 年 9 月 · 全站由同一份 CV 事实源生成。</footer>
+<footer class="foot">最近更新 2026 年 9 月</footer>
 </div>
 <script>
 (function(){var K="site-lang",a=document.querySelector("a.lang");
