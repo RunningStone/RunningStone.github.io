@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="alternate" hreflang="zh" href="index.html">
 <link rel="alternate" hreflang="en" href="index.en.html">
-<title>OpenClaw and Me</title>
-<meta name="description" content="I set up an always-on personal agent system on a Mac mini. At first, I was just trying out software. Later, for a while, I spoke only to the agent: it handled my email, news and everyday records. In the end, I left OpenClaw because maintaining it demanded too much attention. This post retraces that experience through five stages, identifies nineteen needs, and looks at how far existing open-source projects can help.">
+<title>In 2026, Can I Just Talk to an Agent and Stop Opening Other Apps?</title>
+<meta name="description" content="I built an always-on personal agent system on a Mac mini using OpenClaw and a collection of self-hosted services. This article follows how it took over email, news and personal records, and the system gaps that emerged as I installed it, expanded it and tried to keep it running. I saw a beautiful future, even though I was still stuck in the hell of missing infrastructure. It felt like the dawn of the automobile: people driving something that still looked like a carriage body through the mud, only to break down a kilometre outside town.">
 <style>
 :root{--bg:#fdfdfc;--panel:#f5f4f1;--ink:#1b1a18;--ink-soft:#3d3b37;--ink-muted:#6f6b64;--rule:#e2dfd9;
 --accent:#8b3a2f;--accent-soft:#f0e6e3;--need:#8b3a2f;--rough:#7a6a2f;--oss:#2f5d7a;--maxw:780px;--wide:1320px;}
@@ -195,13 +195,14 @@ svg.sel .node.cur circle{stroke-width:2.6}
     <span aria-current="page">English</span><span aria-hidden="true">/</span>
     <a id="language-switch" lang="zh" hreflang="zh" href="index.html">中文</a>
   </nav>
-  <h1>OpenClaw and Me</h1>
+  <h1>In 2026, Can I Just Talk to an Agent and Stop Opening Other Apps?</h1>
   <div class="meta">2026-08-26 · Project research compiled on 2026-09-08</div>
   <figure class="epigraph">
   <blockquote lang="de" cite="https://www.unifr.ch/orthodoxia/de/assets/public/Lehre/FS2025_Eschatologie/Benjamin_Geschichte.pdf#page=4"><p>Dieser Sturm treibt ihn unaufhaltsam in die Zukunft, der er den Rücken kehrt, während der Trümmerhaufen vor ihm zum Himmel wächst. Das, was wir den Fortschritt nennen, ist dieser Sturm.</p></blockquote>
   <figcaption>— <a href="https://www.unifr.ch/orthodoxia/de/assets/public/Lehre/FS2025_Eschatologie/Benjamin_Geschichte.pdf#page=4">Walter Benjamin, Über den Begriff der Geschichte, Thesis IX (1940)</a></figcaption>
 </figure>
-  <p class="lede">I set up an always-on personal agent system on a Mac mini. At first, I was just trying out software. Later, for a while, I spoke only to the agent: it handled my email, news and everyday records. In the end, I left OpenClaw because maintaining it demanded too much attention. This post retraces that experience through five stages, identifies nineteen needs, and looks at how far existing open-source projects can help.</p>
+  <p class="lede">I built an always-on personal agent system on a Mac mini using OpenClaw and a collection of self-hosted services. This article follows how it took over email, news and personal records, and the system gaps that emerged as I installed it, expanded it and tried to keep it running. I saw a beautiful future, even though I was still stuck in the hell of missing infrastructure. It felt like the dawn of the automobile: people driving something that still looked like a carriage body through the mud, only to break down a kilometre outside town.</p>
+  <p class="opening-conclusion">Yes—but at the time, only because I was willing to double as the system's operations engineer. I really did have days when I only talked to the agent and stopped opening other apps and websites myself. The backend services had not disappeared; I no longer had to operate them one by one. Then fixing skills, diagnosing failures, managing permissions, handling upgrades and dealing with exhausted resources consumed the attention I had saved. Turning the user into a system administrator does not fulfil the promise of a personal assistant. For LLM companies to make this way of living viable, they must turn the whole system into a consumer product that ordinary people can buy and keep using, taking maintenance off the user's hands. That requires more than stronger models: harnesses need enormous advances in integration, state management, compatibility and failure recovery.</p>
   <nav class="toc" id="toc" aria-labelledby="toc-title">
   <h2 id="toc-title">Contents</h2>
   <ol class="toc-main">

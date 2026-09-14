@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="alternate" hreflang="zh" href="index.html">
 <link rel="alternate" hreflang="en" href="index.en.html">
-<title>我和openclaw</title>
-<meta name="description" content="我在 Mac mini 上搭了一套全天在线的个人 agent 系统。起初只是试着装软件，后来有一段时间，我每天只和它对话：邮件、新闻、生活记录，都由它替我处理。最后，我却因为维护太费心而离开了 OpenClaw。这篇文章按五个阶段回顾这段经历，整理出十九项需求，也看看已有的开源项目能帮到哪一步。">
+<title>2026 年，我能只和 Agent 对话，不再打开其他 App 吗？</title>
+<meta name="description" content="我在 Mac mini 上用 OpenClaw 和一批自托管服务，搭了一套全天在线的个人 Agent 系统。这篇文章回顾它怎样接管邮件、新闻和生活记录，以及从安装、扩展到长期运行的过程中，逐渐暴露了哪些系统缺口。我看到了一个很美的未来，虽然眼下还被困在缺少基础设施的地狱里。那感觉就像身处汽车刚刚出现的年代：人们开着一个看起来还像马车壳子的东西，在泥地里前进，最后抛锚在离城一公里的地方。">
 <style>
 :root{--bg:#fdfdfc;--panel:#f5f4f1;--ink:#1b1a18;--ink-soft:#3d3b37;--ink-muted:#6f6b64;--rule:#e2dfd9;
 --accent:#8b3a2f;--accent-soft:#f0e6e3;--need:#8b3a2f;--rough:#7a6a2f;--oss:#2f5d7a;--maxw:780px;--wide:1320px;}
@@ -195,13 +195,14 @@ svg.sel .node.cur circle{stroke-width:2.6}
     <span aria-current="page">中文</span><span aria-hidden="true">/</span>
     <a id="language-switch" lang="en" hreflang="en" href="index.en.html">English</a>
   </nav>
-  <h1>我和openclaw</h1>
+  <h1>2026 年，我能只和 Agent 对话，不再打开其他 App 吗？</h1>
   <div class="meta">2026-08-26 · 项目资料整理于 2026-09-08</div>
   <figure class="epigraph">
   <blockquote lang="zh-CN" cite="https://www.unifr.ch/orthodoxia/de/assets/public/Lehre/FS2025_Eschatologie/Benjamin_Geschichte.pdf#page=4"><p>这风暴不可阻挡地把他推向他背对着的未来，而他面前的废墟却越堆越高，直抵天际。我们称之为进步的，正是这场风暴。</p></blockquote>
   <figcaption>— <a href="https://www.unifr.ch/orthodoxia/de/assets/public/Lehre/FS2025_Eschatologie/Benjamin_Geschichte.pdf#page=4">瓦尔特·本雅明，《论历史的概念》，第九则（1940）</a></figcaption>
 </figure>
-  <p class="lede">我在 Mac mini 上搭了一套全天在线的个人 agent 系统。起初只是试着装软件，后来有一段时间，我每天只和它对话：邮件、新闻、生活记录，都由它替我处理。最后，我却因为维护太费心而离开了 OpenClaw。这篇文章按五个阶段回顾这段经历，整理出十九项需求，也看看已有的开源项目能帮到哪一步。</p>
+  <p class="lede">我在 Mac mini 上用 OpenClaw 和一批自托管服务，搭了一套全天在线的个人 Agent 系统。这篇文章回顾它怎样接管邮件、新闻和生活记录，以及从安装、扩展到长期运行的过程中，逐渐暴露了哪些系统缺口。我看到了一个很美的未来，虽然眼下还被困在缺少基础设施的地狱里。那感觉就像身处汽车刚刚出现的年代：人们开着一个看起来还像马车壳子的东西，在泥地里前进，最后抛锚在离城一公里的地方。</p>
+  <p class="opening-conclusion">可以，但当时的前提是，我愿意兼任这套系统的运维工程师。我确实有过只和 Agent 对话、不再主动打开其他 App 和网站的日子；后台服务没有消失，只是不再需要我逐个操作。随后，修 skill、查故障、管权限、处理升级和资源耗尽，又把省下的注意力吃了回去。把用户变成系统管理员，不算兑现个人助理的承诺。LLM 公司要让这种生活方式成立，就必须把整套系统做成普通人买来就能长期使用的消费品，把维护责任从用户身上接过去。这需要的不只是更强的模型，还需要 harness 在集成、状态管理、兼容性和故障恢复上取得巨大进步。</p>
   <nav class="toc" id="toc" aria-labelledby="toc-title">
   <h2 id="toc-title">本篇目录</h2>
   <ol class="toc-main">
