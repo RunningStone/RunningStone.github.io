@@ -1,0 +1,598 @@
+{
+  "revision": "5cc0fea608f3838b0141d81baebb15751bb7ab58",
+  "scope": "Display evidence for the Batch 1 article; not raw simulation files or physical validation.",
+  "counts": {
+    "runs": 30,
+    "steps": 900,
+    "batteryFound": 12,
+    "batterySelected": 6,
+    "wingHoldout": {
+      "pass": 3,
+      "fail": 11,
+      "noBest": 1
+    }
+  },
+  "coreLoc": 2928,
+  "locDefinition": "physical lines including blank lines, comments, docstrings and prompt/template text; external library source excluded",
+  "code": [
+    {
+      "path": "SRC/pipeline/agentloop/__init__.py",
+      "loc": 26,
+      "sha256": "fb2c9238d1229895301350b4fcd8cdc7704cca959c14b5bd569d633a4d67ac39"
+    },
+    {
+      "path": "SRC/pipeline/agentloop/design_agent.py",
+      "loc": 153,
+      "sha256": "27700c8a1d52f3a0adc1dd67f08958b10e1b307cb5582d1c055e3d0d498be378"
+    },
+    {
+      "path": "SRC/pipeline/agentloop/driver.py",
+      "loc": 433,
+      "sha256": "6e0e55a20f507a6b5e7acc7caaf63f5575d4777ee9ec8afe79b00d1962fb3839"
+    },
+    {
+      "path": "SRC/pipeline/agentloop/harness.py",
+      "loc": 236,
+      "sha256": "a4c3d6a439e02e1b763efeb0cbe67949b21f3b35fd9347dce3f04ce77e76cee0"
+    },
+    {
+      "path": "SRC/pipeline/agentloop/scenario.py",
+      "loc": 195,
+      "sha256": "4dc4fadfa54f1e65fa7390a975b7e6bf6ddad72a9478dcb392ae81cb4ee639bc"
+    },
+    {
+      "path": "SRC/pipeline/battblock/__init__.py",
+      "loc": 380,
+      "sha256": "3a285cb30379ed2bdd9ebbcd8847150fc2cda2b2377df17201da5c132470bf8d"
+    },
+    {
+      "path": "SRC/pipeline/battblock/contract.py",
+      "loc": 196,
+      "sha256": "9fa7deb5150de101fd8f5bd12dbf2e2b9a8bc1b33dd319ec3f1a9e2abb3e4732"
+    },
+    {
+      "path": "SRC/pipeline/battblock/solve.py",
+      "loc": 476,
+      "sha256": "7f3227727bc86b2455fae72b1fb46e54284bbe5eef42909df76491ea65c9be24"
+    },
+    {
+      "path": "SRC/pipeline/simblock/__init__.py",
+      "loc": 143,
+      "sha256": "682581cd421282d2ebf95f0fa86d8dd47179cd0fdd606a966ec306569cdf6583"
+    },
+    {
+      "path": "SRC/pipeline/simblock/contract.py",
+      "loc": 286,
+      "sha256": "f6f16dc74c1a5239381455962184193ceb07303081522371bdeb87517b3c0cef"
+    },
+    {
+      "path": "SRC/pipeline/simblock/solve.py",
+      "loc": 404,
+      "sha256": "bd6b53fb49cd38f3f76d786931d75a68cc0f232602df07fc1be9398e4fe75bc7"
+    }
+  ],
+  "modelRuns": [
+    {
+      "experiment": "v1_seeds",
+      "run": "A-s0",
+      "model": null,
+      "n_llm_calls": 0,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "A-s1",
+      "model": null,
+      "n_llm_calls": 0,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "A-s2",
+      "model": null,
+      "n_llm_calls": 0,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "B-nomem-s0",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "B-nomem-s1",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "B-nomem-s2",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "B-s0",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "B-s1",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "B-s2",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "C-nomem-s0",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "C-nomem-s1",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "C-nomem-s2",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "C-s0",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "C-s1",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v1_seeds",
+      "run": "C-s2",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 29,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "A-s0",
+      "model": null,
+      "n_llm_calls": 0,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "A-s1",
+      "model": null,
+      "n_llm_calls": 0,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "A-s2",
+      "model": null,
+      "n_llm_calls": 0,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "B-nomem-s0",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 27,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "B-nomem-s1",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 26,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "B-nomem-s2",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 27,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "B-s0",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 28,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "B-s1",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 27,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "B-s2",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 26,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "C-nomem-s0",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 27,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "C-nomem-s1",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 27,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "C-nomem-s2",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 25,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "C-s0",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 25,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "C-s1",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 27,
+      "n_steps": 30
+    },
+    {
+      "experiment": "v2_seeds",
+      "run": "C-s2",
+      "model": "claude-cli:claude-sonnet-5",
+      "n_llm_calls": 26,
+      "n_steps": 30
+    }
+  ],
+  "wing": {
+    "initial": {
+      "case_id": "f2a11963f6e9",
+      "input_hash": "f2a11963f6e9c12ba9f83dfc84187a0d8a7672d460dd9400a7534c11e37261f3",
+      "status": "ok",
+      "forces": {
+        "Cd": 0.0172843553,
+        "Cl": -0.766626919
+      },
+      "trust": {
+        "converged": true,
+        "force_settled": true,
+        "mesh_ok": true,
+        "residual_ok": true,
+        "yplus_ok": true
+      },
+      "failure": null,
+      "iterations": 889,
+      "runtime_s": 12.524476332822815
+    },
+    "best": {
+      "case_id": "9ce628d4ac15",
+      "input_hash": "9ce628d4ac1580479da40e056977879607717f772f58dbfad24e0c4c6e139f51",
+      "status": "ok",
+      "forces": {
+        "Cd": 0.0323285583,
+        "Cl": -1.24844145
+      },
+      "trust": {
+        "converged": true,
+        "force_settled": true,
+        "mesh_ok": true,
+        "residual_ok": true,
+        "yplus_ok": true
+      },
+      "failure": null,
+      "iterations": 3659,
+      "runtime_s": 101.9661719580181
+    },
+    "probes": [
+      {
+        "params": {
+          "h_c": 0.5721,
+          "alpha_deg": 4.5,
+          "camber": 0.075
+        },
+        "case_id": "5523c624fd03",
+        "status": "failed",
+        "trusted": false,
+        "metric": null,
+        "result": {
+          "case_id": "5523c624fd03",
+          "input_hash": "5523c624fd0305b2e74455203f9506f76db1e9232fe9b9f1665fdda63fd5894d",
+          "status": "failed",
+          "forces": null,
+          "trust": {
+            "converged": false,
+            "force_settled": false,
+            "mesh_ok": false,
+            "residual_ok": false,
+            "yplus_ok": false
+          },
+          "failure": {
+            "evidence": "not converged after 6000 iters; p_res=2.1e-02 U_res=4.5e-03; Cl_last100=-1.1931 Cd_last100=0.0360; kind=residual_stall",
+            "stage": "solve",
+            "type": "not_settled"
+          },
+          "iterations": 6000,
+          "runtime_s": 129.91424500010908
+        },
+        "diagnostic": {
+          "method": "arithmetic mean of last 100 forceCoeffs iteration rows",
+          "n": 100,
+          "from": 5901,
+          "to": 6000,
+          "Cl": -1.1930563373,
+          "Cd": 0.03596734626399999,
+          "J": 1.1930563373,
+          "accepted": false
+        }
+      },
+      {
+        "params": {
+          "h_c": 0.5521,
+          "alpha_deg": 4.5,
+          "camber": 0.075
+        },
+        "case_id": "4dd1b25cf50d",
+        "status": "failed",
+        "trusted": false,
+        "metric": null,
+        "result": {
+          "case_id": "4dd1b25cf50d",
+          "input_hash": "4dd1b25cf50d4eded6948447c9ff03beb2afdb8813364cf68f97e0ee2e50991c",
+          "status": "failed",
+          "forces": null,
+          "trust": {
+            "converged": false,
+            "force_settled": false,
+            "mesh_ok": false,
+            "residual_ok": false,
+            "yplus_ok": false
+          },
+          "failure": {
+            "evidence": "not converged after 6000 iters; p_res=5.5e-02 U_res=1.5e-02; Cl_last100=-1.2487 Cd_last100=0.0446; kind=residual_stall",
+            "stage": "solve",
+            "type": "not_settled"
+          },
+          "iterations": 6000,
+          "runtime_s": 91.46647641714662
+        },
+        "diagnostic": {
+          "method": "arithmetic mean of last 100 forceCoeffs iteration rows",
+          "n": 100,
+          "from": 5901,
+          "to": 6000,
+          "Cl": -1.2486943547999996,
+          "Cd": 0.044588927094,
+          "J": 1.2486943547999996,
+          "accepted": false
+        }
+      }
+    ],
+    "baseline": {
+      "preScan": {
+        "metric": 1.09276989,
+        "params": {
+          "h_c": 0.35,
+          "alpha_deg": 5,
+          "camber": 0.04
+        },
+        "case_id": "2d5124998569"
+      },
+      "numerical": {
+        "best_metric": 0.891472444,
+        "best_params": {
+          "h_c": 0.24366512345678998,
+          "alpha_deg": 1.9747427983539096,
+          "camber": 0.04805246913580248
+        },
+        "n_steps": 30,
+        "x0_used": {
+          "h_c": 0.3,
+          "alpha_deg": 2,
+          "camber": 0.04
+        }
+      }
+    }
+  },
+  "battery": {
+    "initial": {
+      "case_id": "92b18d7efc68",
+      "input_hash": "92b18d7efc68fad4cf3161fc50ebb187e69d6701725c16c4c7c5ab9485d9ae2f",
+      "status": "ok",
+      "objectives": {
+        "T_max": 326.45296618,
+        "charge_time_s": 810,
+        "dT": 12.421614229999989,
+        "soc_reached": 0.5
+      },
+      "trust": {
+        "converged": true,
+        "coupling_settled": true,
+        "energy_balance_ok": true,
+        "mesh_ok": true,
+        "residual_ok": true
+      },
+      "failure": null,
+      "iterations": 3,
+      "runtime_s": 50.79143787478097
+    },
+    "best": {
+      "case_id": "1b20eb1c820f",
+      "input_hash": "1b20eb1c820f222e8e25d4d02c24b5319ede2f4d26b9ae41797e472923377c2e",
+      "status": "ok",
+      "objectives": {
+        "T_max": 317.93235371,
+        "charge_time_s": 925.7142857142857,
+        "dT": 11.508430169999997,
+        "soc_reached": 0.5
+      },
+      "trust": {
+        "converged": true,
+        "coupling_settled": true,
+        "energy_balance_ok": true,
+        "mesh_ok": true,
+        "residual_ok": true
+      },
+      "failure": null,
+      "iterations": 3,
+      "runtime_s": 78.97695562499575
+    },
+    "probes": [
+      {
+        "params": {
+          "c_rate": 1.85,
+          "channel_mm": 5,
+          "coolant_u": 0.5,
+          "tier": 2
+        },
+        "case_id": "eabc8484fbe2",
+        "status": "ok",
+        "trusted": true,
+        "metric": -68.63527859459488,
+        "result": {
+          "case_id": "eabc8484fbe2",
+          "input_hash": "eabc8484fbe218ed601cb8aa7ef217449982527e6b366e53a15dc0f0501f89d4",
+          "status": "ok",
+          "objectives": {
+            "T_max": 319.23081368,
+            "charge_time_s": 875.6756756756756,
+            "dT": 12.121424279999985,
+            "soc_reached": 0.5
+          },
+          "trust": {
+            "converged": true,
+            "coupling_settled": true,
+            "energy_balance_ok": true,
+            "mesh_ok": true,
+            "residual_ok": true
+          },
+          "failure": null,
+          "iterations": 3,
+          "runtime_s": 74.9922227920033
+        }
+      },
+      {
+        "params": {
+          "c_rate": 1.65,
+          "channel_mm": 5,
+          "coolant_u": 0.5,
+          "tier": 2
+        },
+        "case_id": "3b3586a66800",
+        "status": "ok",
+        "trusted": true,
+        "metric": -16.363636363636363,
+        "result": {
+          "case_id": "3b3586a66800",
+          "input_hash": "3b3586a66800310d3d2c89dcfe39b50cdb93210ad3f9f3ff551de4a46133b2e2",
+          "status": "ok",
+          "objectives": {
+            "T_max": 316.64157164,
+            "charge_time_s": 981.8181818181819,
+            "dT": 10.886757219999993,
+            "soc_reached": 0.5
+          },
+          "trust": {
+            "converged": true,
+            "coupling_settled": true,
+            "energy_balance_ok": true,
+            "mesh_ok": true,
+            "residual_ok": true
+          },
+          "failure": null,
+          "iterations": 3,
+          "runtime_s": 57.486616750014946
+        }
+      }
+    ]
+  },
+  "provenance": {
+    "method": "Read archived CaseResult, run summaries, and forceCoeffs. No new simulations.",
+    "sourceHashes": [
+      "7d1d69eee693255011cfacc8f12ad690b459388e867402cc861ddd86ce607d89",
+      "a415b9a0dcbb942dc5b1f5c4ad8e258526ff1f722a84b46aba322e71736ced68",
+      "9f6db7070af54c7dc55d3127df1a0d9090e083b6b2b5d4bd992624f7fa9ff380",
+      "85b906ff02c4eaf5005cfcf4e8de08b64ca03cf8bdc6258a5ffdacc656d5741c",
+      "1192a7cdda3d3668b577da5deab97843538a6f2cd8355b5a8278b0de7bb90050",
+      "9a4eeb897835477f0b13bdfdd5a5735e22c710d5e28f3afbbe541113c07ddfbf",
+      "81787af6660db443132f319577f3d1720239b5fa6e7285d7fedfe566ea2ea50e",
+      "a6157fb9b9f545eaa475fb617942b93a42aab782b9b588ef75c53d046699e955",
+      "9cd882345847720004e79f830f63c423d148c21a3575d992b45364d24a307aae",
+      "82fa227d71a1ac4861935ba254c3ac72d6528242c4dbcd1d75dd63c9418834eb",
+      "3fde36fdd6556903ae90b89976e92ca02718d29d5bfebea8e2223a77f9d579c7",
+      "34584d0d5acf267588f97914ab6ee32b1170d5cdc9f3b80c3fc9e461f4b89325",
+      "f3c54d87480b108f576f6cd01db17f616b5801916a56e43337a3f3164af7b13e",
+      "4a4696a614ea023b1590c5b3730d781dabc4de99fed0398348f3714ab81b54bf",
+      "abc14d505e4a82402ea1707579fd971153da52a67236adf63b12a5653a726164",
+      "3018aef0806c8ac7cacd483f93fe9c3103e658b9e2955b8e997cf6bcf4e60c0e",
+      "0b635e56b878a8b86358268f9dedae13d70b20154fe27e20f7a8253085a75bbb",
+      "cd961cc644a6ac054bc6e8f4ed583d2002ee3f2e4aaf56944a2bb36dbfd2b4f0",
+      "439ee61f99f416e844b961a0f15b00aaed673acbfd023441bb8f7ba65047e370",
+      "a627283144cebfb43ab1947009d9d41e064746fc2f10d7ad0b5fc599f1a59672",
+      "16faac69f0e3dbe61c4739adf9af191ed3c0e2b0060a2e314ea3690734f72c39",
+      "ea48e74ba7eddc753d7987ebfce9f6e2e61344389bb02ad569087ac872ce4dc2",
+      "3a79ba801e10864014903d02c8cf02e615376963f60b9687dc40f54bebae3b38",
+      "2f656ba12f6f7fd5214a83775f3345153431a87e5c59a01d9e97c36e0961b67c",
+      "964fcf56fde16923fde52c7b54ef30f9d340930b05fc53e7b25d53383847710b",
+      "6a95494b3be60ee788a55c53b4e378b3ae025bbe1008d6b6a11c6b6536f329e1",
+      "75fb869301614064524dd3e55bcaa15fd1610b8b8a5878946af92ba7a8b57f72",
+      "bf8d867bfbb71719b202ac7b1c42c2c0edd3a84315cdca838f66478917fd464d",
+      "571d8aaea1795f9a4a29b6b13b315fcc53a0c4e19dd776cb0ff87e93b178bb54",
+      "7c24dddaf75ff8a535d496ea05e9469df2f08f81f1618aea8fbee00345a5b85c",
+      "1ca3157ca3f2f6b179e783a5182399f3c86729f7d58fc7487e347390fa28fe46",
+      "317eb4f179b987524a953aa7eadcded2e85134673d8375129f62bb183bcc9d78",
+      "ac074393bae31b73108a3b6c1667a5e45d818c90c136506e10bf2cae24b2b52e",
+      "64072276055cdce15f5468e972d3c63531cf61a919e3a1b09709c3f113266f72",
+      "b8326ed0e23181e754c1641dfb6281312bee43c7ae95e9ef3d8f2af0d3a28b23",
+      "c37a6cb0a5978d6a38c386f8ba73ba87b5aac2aeb2646d4dafacb296e71b5db8",
+      "6fb6f35a816a5b070c21bfca97c4ca7661693e8cc744632bf436324346c26c0d",
+      "1d185b19451d92a876592ce6ff2ecee6f492c3c1049a798a2fb2c528db126b74",
+      "cea244c5e049b2bd3eac9118e062d513075cb7e290a79a71c6b78e25cbcf6f4e",
+      "e0e75e6817cfb4c75348e7e0acd38034a8067c572d536c15aae4e1b44385a1ef",
+      "15802fa3673fefbac2f1fcedea814c36cb06ad1abaf9e4a842338a06b853fc3d",
+      "f590b0b2884ec0adb3a9313e718116f0206b5472af73a20c14f8a6e0fea4d6f1",
+      "b14513233512e2f93c157f211c02be8b04dc1660feddac14dcef6771684c90ba",
+      "a31d17d24b1b1031ceca640a3f3927fa695f7a6c195231586f21c006c201f2c1",
+      "adee1ed9e04800ae61a2c0f143d06d46e23a8de4ae9b5897bbccd0ddee233044",
+      "4b3370b895c6920ab134dabb1eeba87cd4b71ed0bf1a6730e2d9b979af727b6e"
+    ]
+  }
+}
